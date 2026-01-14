@@ -1,0 +1,70 @@
+# XAU1 Strategy Configuration
+strategy:
+  name: "XAU1 SMC + Order Flow"
+  symbol: "XAUUSDT"
+  exchange: "binance"
+
+timeframes:
+  bias: "4h"      # 4 hour for trend bias
+  confirm: "1h"   # 1 hour for confirmation
+  entry: "15m"    # 15 minute for entry signals
+
+smc_indicators:
+  swing_points:
+    left_bars: 2
+    right_bars: 2
+  
+  fair_value_gaps:
+    merge_consecutive: true
+    
+  order_blocks:
+    lookback_period: 50
+    volume_threshold: 1.5
+    
+  market_structure:
+    bos_lookback: 20
+    choch_lookback: 30
+    
+  rsi:
+    period: 14
+    overbought: 70
+    oversold: 30
+    
+  atr:
+    period: 14
+    multiplier: 1.5
+
+trading_sessions:
+  london:
+    start: "13:00"
+    end: "20:00"
+    timezone: "UTC"
+  newyork:
+    start: "13:30"
+    end: "21:00"
+    timezone: "UTC"
+
+entry_rules:
+  type1_bos_fvg_rsi:
+    enabled: true
+    min_confluence: 3
+  
+  type2_ob_liquidity:
+    enabled: true
+    min_confluence: 3
+    
+  type3_rsi_divergence:
+    enabled: true
+    min_confluence: 2
+
+risk_management:
+  position_size_percentage: 1.0  # 1% per trade
+  stop_loss_pips: 30
+  take_profit1_pips: 50
+  take_profit2_pips: 100
+  min_risk_reward_ratio: 2.0
+  max_positions: 2
+
+filters:
+  max_trades_per_session: 3
+  skip_friday_after: "18:00"

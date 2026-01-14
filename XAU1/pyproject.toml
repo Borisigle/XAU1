@@ -1,0 +1,63 @@
+[tool.poetry]
+name = "xau1"
+version = "0.1.0"
+description = "XAUUSD Trading Bot - SMC + Order Flow Strategy"
+authors = ["Trading Bot Team <team@xau1.bot>"]
+readme = "README.md"
+packages = [{include = "xau1", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.1.4"
+numpy = "^1.26.2"
+streamlit = "^1.29.0"
+plotly = "^5.18.0"
+ccxt = "^4.2.13"
+pydantic = "^2.5.3"
+pydantic-settings = "^2.1.0"
+requests = "^2.31.0"
+python-dotenv = "^1.0.0"
+ta = "^0.11.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4.3"
+black = "^23.12.1"
+ruff = "^0.1.9"
+pytest-cov = "^4.1.0"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

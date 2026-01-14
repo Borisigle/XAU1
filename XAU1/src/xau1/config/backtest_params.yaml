@@ -1,0 +1,31 @@
+# Backtesting Configuration
+backtest:
+  symbol: "XAUUSDT"
+  timeframe: "15m"
+  data_source: "binance"
+  
+data:
+  lookback_months: 12
+  start_date: null  # Will use lookback from current date
+  end_date: null    # Current date
+  
+simulation:
+  initial_capital: 10000.0
+  commission_rate: 0.0002  # 0.02% (Binance maker)
+  slippage_pips: 1.0
+  spread_pips: 0.5
+  tick_size: 0.01
+  
+metrics:
+  target_win_rate: 0.55
+  target_profit_factor: 1.8
+  target_max_drawdown: 0.12
+  target_sharpe_ratio: 1.0
+  target_recovery_factor: 1.5
+  target_trades_per_week: 3.0
+  
+reporting:
+  output_dir: "backtest_results"
+  save_trades_csv: true
+  generate_charts: true
+  generate_html_report: true
